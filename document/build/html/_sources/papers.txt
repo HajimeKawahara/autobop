@@ -1,0 +1,14 @@
+.. |pl| image:: _static/pl.png
+
+================================
+List of Papers
+================================
+
+
+--------------------------------
+**The Starspots - Transit Depth Relation of the Evaporating Planet Candidate KIC 12557548b**
+--------------------------------
+
+	**Hajime Kawahara**, Teruyuki Hirano, Kenji Kurosaki, Yuichi Ito, Masahiro Ikoma, 
+	`arXiv:1308.1585 <http://arxiv.org/abs/1308.1585">`_
+

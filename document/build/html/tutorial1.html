@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial 1 (console) &#8212; autobop   documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial 2 (using Jupyter)" href="tutorial2.html" />
+    <link rel="prev" title="Install" href="install.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="tutorial2.html" title="Tutorial 2 (using Jupyter)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Install"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">autobop   documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-1-console">
+<h1>Tutorial 1 (console)<a class="headerlink" href="#tutorial-1-console" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simple-use">
+<h2>Simple use<a class="headerlink" href="#simple-use" title="Permalink to this headline">¶</a></h2>
+<p>In your console, type</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">autobop</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">band</span> <span class="n">brown</span><span class="o">.</span><span class="n">band</span> <span class="o">-</span><span class="n">sheet</span> <span class="n">giant</span><span class="o">.</span><span class="n">abs</span> <span class="o">-</span><span class="n">o</span> <span class="n">giant</span><span class="o">.</span><span class="n">takt</span>
+</pre></div>
+</div>
+<p>This makes a takt file (giant.takt) in the current directory. Start up your MIDI environment and set instruments. Then, use takt to connect MIDI.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">takt</span> <span class="n">giant</span><span class="o">.</span><span class="n">takt</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="changing-the-chord">
+<h2>Changing the chord<a class="headerlink" href="#changing-the-chord" title="Permalink to this headline">¶</a></h2>
+<p>The abs file describes the chord progression. For instance, giant.abs contains:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">BMaj7</span> <span class="n">D7</span> <span class="o">|</span> <span class="n">GMaj7</span> <span class="n">Bb7</span> <span class="o">|</span> <span class="n">EbMaj7</span> <span class="n">EbMaj7</span> <span class="o">|</span> <span class="n">Am7</span> <span class="n">D7</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">GMaj7</span> <span class="n">Bb7</span> <span class="o">|</span> <span class="n">EbMaj7</span> <span class="n">F</span><span class="c1">#7 | BMaj7 BMaj7 | Fm7 Bb7 |</span>
+<span class="o">|</span> <span class="n">EbMaj7</span> <span class="n">EbMaj7</span> <span class="o">|</span> <span class="n">Am7</span> <span class="n">D7</span> <span class="o">|</span> <span class="n">GMaj7</span> <span class="n">GMaj7</span> <span class="o">|</span> <span class="n">Dbm7</span> <span class="n">Gb7</span> <span class="o">|</span>
+<span class="o">|</span><span class="n">BMaj7</span> <span class="n">BMaj7</span> <span class="o">|</span> <span class="n">Fm7</span> <span class="n">Bb7</span> <span class="o">|</span> <span class="n">EbMaj7</span> <span class="n">EbMaj7</span> <span class="o">|</span> <span class="n">Dbm7</span> <span class="n">Gb7</span> <span class="o">||</span>
+</pre></div>
+</div>
+<p>The preset chord symbols are here.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">symbol</th>
+<th class="head">same</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Maj</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>M</td>
+<td>Maj</td>
+</tr>
+<tr class="row-even"><td>Maj7</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>7</td>
+<td>7</td>
+</tr>
+<tr class="row-even"><td>7alt</td>
+<td>7</td>
+</tr>
+<tr class="row-odd"><td>7cd</td>
+<td>7</td>
+</tr>
+<tr class="row-even"><td>7(B)</td>
+<td>7</td>
+</tr>
+<tr class="row-odd"><td>7(A)</td>
+<td>7</td>
+</tr>
+<tr class="row-even"><td>m</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>m7</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>mb5</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>dim</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>sus4</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-odd"><td>Maj7b5</td>
+<td>&nbsp;</td>
+</tr>
+<tr class="row-even"><td>mM7</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>See sound_definition.py in detail.</p>
+</div>
+<div class="section" id="changing-the-band-members">
+<h2>Changing the band members<a class="headerlink" href="#changing-the-band-members" title="Permalink to this headline">¶</a></h2>
+<p>The band file specifies the characteristics of the band. For instance, brown.band has</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">john</span><span class="p">:</span><span class="n">brownbop</span><span class="p">:</span><span class="n">melody</span><span class="p">,</span><span class="n">test</span><span class="o">.</span><span class="n">ss</span>
+<span class="n">tommy</span><span class="p">:</span><span class="n">brownbop</span><span class="p">:</span><span class="n">piano</span><span class="p">,</span><span class="n">test</span><span class="o">.</span><span class="n">ss</span>
+<span class="n">paul</span><span class="p">:</span><span class="n">brownbop</span><span class="p">:</span><span class="n">bass</span><span class="p">,</span><span class="n">test</span><span class="o">.</span><span class="n">ss</span>
+<span class="n">art</span><span class="p">:</span><span class="n">rhythmmachine</span><span class="p">:</span><span class="n">swing</span>
+</pre></div>
+</div>
+<p>In this case, there are four members and john, tommy, and paul use &#8220;brownbop&#8221; and art &#8220;rhythmmachine&#8221; as the improvization module. If you want to change the improvisation module, edit these. the third column corresponds to the option of the impovisation module. See the descriptions of each module for this option. Here, we show an example for the brownbop module.</p>
+<p>In test.ss, you find the lines such as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">melody</span><span class="p">:</span><span class="n">teff</span><span class="p">:</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.2</span>
+<span class="n">melody</span><span class="p">:</span><span class="n">H</span><span class="p">:</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.2</span>
+</pre></div>
+</div>
+<p>These lines specifies the effective temperature and the Hurst exponent for &#8220;melody&#8221;.
+If you change these sequence, you will hear different taste of the improvisation. Try it.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial 1 (console)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial2.html">Tutorial 2 (using Jupyter)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="brownbop.html">brownbop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rhythmmachine.html">rhythmmachine</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bopnizer.html">bopnizer</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="tutorial2.html" title="Tutorial 2 (using Jupyter)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Install"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">autobop   documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Hajime Kawahara, Ryohei Kikuchi.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+    </div>
+  </body>
+</html>

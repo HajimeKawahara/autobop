@@ -1,0 +1,48 @@
+==================================
+Brownian Bridge type bop
+==================================
+
+example 1
+
+::
+
+ ./brownbop.py -nk 0 1 5 3 5 3 5 0 -tk m7 7 Maj 7 Maj 7 Maj Maj
+ -key 4 -H 0.7 0.6 0.5 0.4 0.5 0.6 0.7 0.6 0.5 0.4 -ndiv 4 -n 40 
+ -c cel.list -teff 0.1 0.2 0.4 0.6 1.0 1.5 2.0 2.5 3.0 3.5 
+ -o boltzmann.wav -lily
+
+example 2
+
+::
+
+ ./brownbop.py -nk 5 3 5 3 5 0 6 5 5 3 5 3 5 0 6 5 5 0 6 5 5 0 6 5 5 0 6 5 5 0 -2 5 
+ -tk Maj 7 Maj 7 Maj Maj m7 7 Maj 7 Maj 7 Maj Maj m7 7 Maj Maj m7 7 Maj Maj m7 7 Maj Maj m7 7 Maj Maj m7 7 
+ -key 11 -ndiv 4 -c cel.list 
+ -H 0.4 0.45 0.5 0.6 0.2 0.4 0.4 0.15 0.15 0.4 0.6 
+ -teff 0.2 0.3 0.4 1.0 0.2 0.2 0.6 0.1 1.5 0.2 0.2 
+ -noct 2 -l 0.088 -n 24 -o gs.wav
+
+
+Stablization (-stab) 
+------------------------------
+
+一つのコードの中に例えば4つ音があるとき、一番目や三番目の音の温度をさげて、メロディのコード安定性
+を上げたいことがある。このような場合に用いるのがstab optionであり下げる温度割合を数値で与える。
+
+.. math::
+   :nowrap:
+
+      \begin{eqnarray}
+      T_\mathrm{eff, idiv} = r_\mathrm{idiv} T_\mathrm{eff}
+      \end{eqnarray}
+
+example
+
+::
+
+ ./brownbop.py -nk 5 3 5 3 5 0 6 5 5 3 5 3 5 0 6 5 5 0 6 5 5 0 6 5 5 0 6 5 5 0 -2 5 
+ -tk Maj 7 Maj 7 Maj Maj m7 7 Maj 7 Maj 7 Maj Maj m7 7 Maj Maj m7 7 Maj Maj m7 7 Maj Maj m7 7 Maj Maj m7 7 
+ -key 11 -ndiv 4 -c cel.list -H 0.1 0.3 0.7 -teff 0.4 -noct 2 -l 0.088 -n 4 
+ -stab 0.25 1.0 0.25 1.0
+
+この場合、コードの内の音は順に0.1 (=0.25*0.4), 0.4(=1.0*0.4), 0.1, 0.4の温度をもつ。

@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial 2 (using Jupyter) &#8212; autobop   documentation</title>
+    
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="brownbop" href="brownbop.html" />
+    <link rel="prev" title="Tutorial 1 (console)" href="tutorial1.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="brownbop.html" title="brownbop"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tutorial1.html" title="Tutorial 1 (console)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">autobop   documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tutorial-2-using-jupyter">
+<h1>Tutorial 2 (using Jupyter)<a class="headerlink" href="#tutorial-2-using-jupyter" title="Permalink to this headline">¶</a></h1>
+<p>To understand what autobop is doing, Jupyter (or ipython notobook) is very useful. Perform samples/tutorial2.ipynb.</p>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pylab</span>
+
+<span class="kn">from</span> <span class="nn">classAutobop</span> <span class="k">import</span> <span class="n">track</span>
+<span class="kn">import</span> <span class="nn">autobop</span>
+<span class="kn">import</span> <span class="nn">sheet</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">brownbop</span>
+<span class="kn">import</span> <span class="nn">sound_definition</span>
+<span class="kn">import</span> <span class="nn">debugraphic</span>
+</pre></div>
+</div>
+<div class="section" id="setting">
+<h2>setting<a class="headerlink" href="#setting" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># read a band file</span>
+<span class="n">band</span><span class="o">=</span><span class="n">autobop</span><span class="o">.</span><span class="n">read_personnel</span><span class="p">(</span><span class="s2">&quot;brown.band&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># your band members are john (melody: MIDI ch1), paul (bass: MIDI ch3),</span>
+<span class="c1"># tommy (piano: MIDI ch2), and art (drum: MIDI ch4).</span>
+<span class="n">band</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;art&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ch&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+  <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;rhythmmachine&#39;</span> <span class="kn">from</span> <span class="s1">&#39;rhythmmachine.pyc&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="s1">&#39;option&#39;</span><span class="p">:</span> <span class="s1">&#39;swing&#39;</span><span class="p">},</span>
+ <span class="s1">&#39;john&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ch&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;brownbop&#39;</span> <span class="kn">from</span> <span class="s1">&#39;brownbop.pyc&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="s1">&#39;option&#39;</span><span class="p">:</span> <span class="s1">&#39;melody,test.ss&#39;</span><span class="p">},</span>
+ <span class="s1">&#39;paul&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ch&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;brownbop&#39;</span> <span class="kn">from</span> <span class="s1">&#39;brownbop.pyc&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="s1">&#39;option&#39;</span><span class="p">:</span> <span class="s1">&#39;bass,test.ss&#39;</span><span class="p">},</span>
+ <span class="s1">&#39;tommy&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;ch&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">module</span> <span class="s1">&#39;brownbop&#39;</span> <span class="kn">from</span> <span class="s1">&#39;brownbop.pyc&#39;</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="s1">&#39;option&#39;</span><span class="p">:</span> <span class="s1">&#39;piano,test.ss&#39;</span><span class="p">}}</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># read a chord progression file</span>
+<span class="n">tseq</span><span class="p">,</span> <span class="n">tkseq</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;giant.abs&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># tseq describes a sequence of tonic sg notes (from 0 to 11), which is different from the MIDI note.</span>
+<span class="c1"># tseq[0:3] #-&gt; array([[11],[ 2],[ 7]])</span>
+<span class="c1"># you can know the correspondance of values of notes to CDEF... using getsg().</span>
+<span class="n">sg</span><span class="o">=</span><span class="n">sound_definition</span><span class="o">.</span><span class="n">getsg</span><span class="p">()</span>
+<span class="n">sg</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s1">&#39;Eb&#39;</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># tkseq specifies a sequence of chord types</span>
+<span class="c1"># tkseq[0:3] #-&gt; array([&#39;Maj7&#39;, &#39;7&#39;, &#39;Maj7&#39;], dtype=&#39;|S4&#39;)</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># of repititions</span>
+<span class="n">nsamp</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">tkseq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">tkseq</span><span class="p">,</span> <span class="n">nsamp</span><span class="p">)</span>
+<span class="n">tseq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">tseq</span><span class="p">,</span> <span class="p">(</span><span class="n">nsamp</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># bpm</span>
+<span class="n">bpm</span><span class="o">=</span><span class="mi">320</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># defining the duration of the tonic sequence (tonic duration; tdur)</span>
+<span class="n">chordlength</span> <span class="o">=</span> <span class="mi">960</span>
+<span class="n">tdur</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span> <span class="nb">len</span><span class="p">(</span><span class="n">tseq</span><span class="p">),</span> <span class="n">chordlength</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span> <span class="p">)</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># time of tdur</span>
+<span class="n">ttime</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">tdur</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="initialize">
+<h2>initialize<a class="headerlink" href="#initialize" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">control</span><span class="o">=</span><span class="p">{}</span> <span class="c1">#current atmosphere</span>
+<span class="n">trkband</span><span class="o">=</span><span class="p">{}</span>
+<span class="n">eachtcur</span><span class="o">=</span><span class="p">{}</span>
+<span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">band</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="n">player</span> <span class="o">=</span> <span class="n">band</span><span class="p">[</span><span class="n">part</span><span class="p">]</span>
+    <span class="n">trkband</span><span class="p">[</span><span class="n">part</span><span class="p">]</span><span class="o">=</span><span class="n">track</span><span class="p">()</span>
+    <span class="c1">#set control</span>
+    <span class="n">eachtcur</span><span class="p">[</span><span class="n">part</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">control</span><span class="p">[</span><span class="n">part</span><span class="p">]</span><span class="o">=</span><span class="n">player</span><span class="p">[</span><span class="s1">&#39;module&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">initialize</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">player</span><span class="p">[</span><span class="s2">&quot;option&quot;</span><span class="p">],</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+<span class="n">control</span><span class="p">[</span><span class="s2">&quot;tcur&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">eachtcur</span>  <span class="c1"># each current time of a player</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">READ</span> <span class="n">melody</span><span class="o">.</span><span class="n">farey</span>
+<span class="n">n</span> <span class="mi">5</span>
+<span class="n">amplitude</span> <span class="mf">30.0</span>
+<span class="p">[</span><span class="s1">&#39;1/5&#39;</span> <span class="s1">&#39;1/4&#39;</span> <span class="s1">&#39;1/3&#39;</span> <span class="s1">&#39;2/5&#39;</span> <span class="s1">&#39;1/2&#39;</span> <span class="s1">&#39;3/5&#39;</span> <span class="s1">&#39;2/3&#39;</span> <span class="s1">&#39;3/4&#39;</span> <span class="s1">&#39;4/5&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="n">control</span><span class="p">[</span><span class="s1">&#39;john&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;gauss-farey-n&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;teff&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="mf">0.4</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s1">&#39;gauss&#39;</span><span class="p">:</span> <span class="s1">&#39;gauss-farey&#39;</span><span class="p">,</span> <span class="s1">&#39;velarr&#39;</span><span class="p">:</span> <span class="n">array</span><span class="p">([[</span>  <span class="mf">84.</span><span class="p">,</span>   <span class="mf">83.</span><span class="p">,</span>   <span class="mf">83.</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">],</span>
+       <span class="p">[</span>  <span class="mf">84.</span><span class="p">,</span>   <span class="mf">84.</span><span class="p">,</span>   <span class="mf">83.</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">],</span>
+       <span class="p">[</span>  <span class="mf">85.</span><span class="p">,</span>   <span class="mf">84.</span><span class="p">,</span>   <span class="mf">84.</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">,</span>   <span class="mf">59.</span><span class="p">],</span>
+       <span class="o">...</span><span class="p">,</span>
+       <span class="p">[</span> <span class="mf">104.</span><span class="p">,</span>  <span class="mf">104.</span><span class="p">,</span>  <span class="mf">104.</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span>   <span class="mf">91.</span><span class="p">,</span>   <span class="mf">90.</span><span class="p">,</span>   <span class="mf">88.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">104.</span><span class="p">,</span>  <span class="mf">104.</span><span class="p">,</span>  <span class="mf">104.</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span>   <span class="mf">92.</span><span class="p">,</span>   <span class="mf">91.</span><span class="p">,</span>   <span class="mf">90.</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mf">104.</span><span class="p">,</span>  <span class="mf">104.</span><span class="p">,</span>  <span class="mf">104.</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span>   <span class="mf">93.</span><span class="p">,</span>   <span class="mf">92.</span><span class="p">,</span>   <span class="mf">91.</span><span class="p">]]),</span> <span class="s1">&#39;gauss-farey-amp&#39;</span><span class="p">:</span> <span class="mf">30.0</span><span class="p">,</span> <span class="s1">&#39;inst&#39;</span><span class="p">:</span> <span class="s1">&#39;melody&#39;</span><span class="p">,</span> <span class="s1">&#39;iphrase&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;storydict&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;melody&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;len_estab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">],</span> <span class="s1">&#39;timer_start_width&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">],</span> <span class="s1">&#39;timer_stop_width&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">],</span> <span class="s1">&#39;teff&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="s1">&#39;noct&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span> <span class="s1">&#39;timer_stop_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">55.0</span><span class="p">],</span> <span class="s1">&#39;timer_start_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">15.0</span><span class="p">],</span> <span class="s1">&#39;blen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">480.0</span><span class="p">],</span> <span class="s1">&#39;gauss-farey&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;melody.farey&#39;</span><span class="p">],</span> <span class="s1">&#39;master&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;finger&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;velocgen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;out.vel&#39;</span><span class="p">],</span> <span class="s1">&#39;oct&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;teff_estab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">],</span> <span class="s1">&#39;beat&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">],</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">],</span> <span class="s1">&#39;rhyfile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;test.rhy&#39;</span><span class="p">],</span> <span class="s1">&#39;stab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;rhythm_pattern&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rhythmgen&#39;</span><span class="p">],</span> <span class="s1">&#39;velstab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;celfile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;cel.list&#39;</span><span class="p">]},</span> <span class="s1">&#39;secondmel&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;len_estab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">],</span> <span class="s1">&#39;timer_start_width&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">],</span> <span class="s1">&#39;timer_stop_width&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">7.0</span><span class="p">],</span> <span class="s1">&#39;teff&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span> <span class="s1">&#39;noct&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span> <span class="s1">&#39;timer_stop_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">55.0</span><span class="p">],</span> <span class="s1">&#39;timer_start_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">18.0</span><span class="p">],</span> <span class="s1">&#39;blen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">480.0</span><span class="p">],</span> <span class="s1">&#39;gauss-farey&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;secondmel.farey&#39;</span><span class="p">],</span> <span class="s1">&#39;master&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;finger&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;velocgen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;out.vel&#39;</span><span class="p">],</span> <span class="s1">&#39;oct&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;teff_estab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">],</span> <span class="s1">&#39;beat&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">],</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span> <span class="s1">&#39;rhyfile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;test.rhy&#39;</span><span class="p">],</span> <span class="s1">&#39;stab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;rhythm_pattern&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;rhythmgen&#39;</span><span class="p">],</span> <span class="s1">&#39;velstab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;celfile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;cel.list&#39;</span><span class="p">],</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;-1&#39;</span><span class="p">,</span> <span class="s1">&#39;61440&#39;</span><span class="p">]},</span> <span class="s1">&#39;piano&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;len_estab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;rhythm_pattern&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;test&#39;</span><span class="p">],</span> <span class="s1">&#39;timer_stop_width&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">],</span> <span class="s1">&#39;teff&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="s1">&#39;beat&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">],</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="s1">&#39;noct&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">],</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">],</span> <span class="s1">&#39;timer_start_width&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">],</span> <span class="s1">&#39;celfile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;cel.list&#39;</span><span class="p">],</span> <span class="s1">&#39;master&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.99</span><span class="p">],</span> <span class="s1">&#39;finger&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">],</span> <span class="s1">&#39;timer_start_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;timer_stop_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">40.0</span><span class="p">],</span> <span class="s1">&#39;stab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;velstab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;blen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">480.0</span><span class="p">],</span> <span class="s1">&#39;oct&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;-1&#39;</span><span class="p">],</span> <span class="s1">&#39;teff_estab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">]},</span> <span class="s1">&#39;bass&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;len_estab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;timer_start_width&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;timer_stop_width&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">5.0</span><span class="p">],</span> <span class="s1">&#39;off&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">153600.0</span><span class="p">,</span> <span class="mf">184320.0</span><span class="p">],</span> <span class="s1">&#39;teff&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.025</span><span class="p">],</span> <span class="s1">&#39;beat&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">240.0</span><span class="p">],</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">],</span> <span class="s1">&#39;noct&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">3.0</span><span class="p">],</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">],</span> <span class="s1">&#39;timer_start_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;celfile&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;celb.list&#39;</span><span class="p">],</span> <span class="s1">&#39;teff_estab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.2</span><span class="p">],</span> <span class="s1">&#39;master&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.99</span><span class="p">],</span> <span class="s1">&#39;finger&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;velocgen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;out.vel&#39;</span><span class="p">],</span> <span class="s1">&#39;timer_stop_c&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">50.0</span><span class="p">],</span> <span class="s1">&#39;stab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;velstab&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s1">&#39;blen&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">480.0</span><span class="p">],</span> <span class="s1">&#39;oct&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;-2&#39;</span><span class="p">],</span> <span class="s1">&#39;rhythm_pattern&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;4beat&#39;</span><span class="p">]},</span> <span class="s1">&#39;general&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;bpm&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">380.0</span><span class="p">],</span> <span class="s1">&#39;inst&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;melody&#39;</span><span class="p">,</span> <span class="s1">&#39;piano&#39;</span><span class="p">,</span> <span class="s1">&#39;bass&#39;</span><span class="p">,</span> <span class="s1">&#39;secondmel&#39;</span><span class="p">],</span> <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">10.0</span><span class="p">]}},</span> <span class="s1">&#39;gauss-farey-weight&#39;</span><span class="p">:</span> <span class="n">array</span><span class="p">([</span> <span class="mf">0.07462687</span><span class="p">,</span>  <span class="mf">0.22388062</span><span class="p">,</span>  <span class="mf">0.37313437</span><span class="p">,</span>  <span class="mf">0.38059705</span><span class="p">,</span>  <span class="mf">0.75373137</span><span class="p">,</span>
+        <span class="mf">0.76865673</span><span class="p">,</span>  <span class="mf">0.91791046</span><span class="p">,</span>  <span class="mf">0.99253732</span><span class="p">,</span>  <span class="mf">1.</span>        <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">float32</span><span class="p">),</span> <span class="s1">&#39;onoff&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="main-loop">
+<h2>main loop<a class="headerlink" href="#main-loop" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">min</span><span class="p">(</span> <span class="n">control</span><span class="p">[</span><span class="s1">&#39;tcur&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="p">)</span> <span class="o">&lt;</span> <span class="n">ttime</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">part</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span> <span class="n">control</span><span class="p">[</span><span class="s1">&#39;tcur&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">player</span><span class="o">=</span><span class="n">band</span><span class="p">[</span><span class="n">part</span><span class="p">]</span>
+    <span class="n">trk</span><span class="p">,</span> <span class="n">control</span> <span class="o">=</span> <span class="n">player</span><span class="p">[</span><span class="s1">&#39;module&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">improvise</span><span class="p">(</span><span class="n">tseq</span><span class="p">,</span> <span class="n">tkseq</span><span class="p">,</span> <span class="n">ttime</span><span class="p">,</span> <span class="n">part</span><span class="p">,</span> <span class="n">control</span><span class="p">)</span>
+    <span class="n">trkband</span><span class="p">[</span><span class="n">part</span><span class="p">]</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">trk</span><span class="p">)</span>
+    <span class="n">control</span><span class="p">[</span><span class="s1">&#39;tcur&#39;</span><span class="p">][</span><span class="n">part</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">trkband</span><span class="p">[</span><span class="n">part</span><span class="p">]</span><span class="o">.</span><span class="n">dur</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">paul</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.6</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.025</span>
+<span class="n">john</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.4</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.4</span>
+<span class="n">Farey</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="n">rhythmgen</span>
+<span class="n">test</span><span class="o">.</span><span class="n">rhy</span>
+<span class="n">tommy</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.8</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.1</span>
+<span class="n">john</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.2</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.1</span> <span class="n">teff</span> <span class="mf">0.2</span>
+<span class="n">Farey</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="n">rhythmgen</span>
+<span class="n">test</span><span class="o">.</span><span class="n">rhy</span>
+<span class="n">tommy</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.9</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.1</span>
+<span class="n">paul</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.6</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.025</span>
+<span class="n">john</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.6</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.2</span> <span class="n">teff</span> <span class="mf">0.7</span>
+<span class="n">Farey</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="n">rhythmgen</span>
+<span class="n">test</span><span class="o">.</span><span class="n">rhy</span>
+<span class="n">tommy</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.7</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.1</span>
+<span class="n">paul</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.6</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.025</span>
+<span class="n">john</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.5</span> <span class="n">J</span><span class="o">=</span> <span class="mf">1.9</span> <span class="n">teff</span> <span class="mf">0.5</span>
+<span class="n">Farey</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="n">rhythmgen</span>
+<span class="n">test</span><span class="o">.</span><span class="n">rhy</span>
+<span class="n">john</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.6</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.6</span>
+<span class="n">Farey</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span>
+<span class="n">rhythmgen</span>
+<span class="n">test</span><span class="o">.</span><span class="n">rhy</span>
+<span class="n">paul</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.6</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.025</span>
+<span class="n">john</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.3</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.1</span> <span class="n">teff</span> <span class="mf">0.2</span>
+<span class="n">Farey</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">4</span>
+<span class="n">rhythmgen</span>
+<span class="n">test</span><span class="o">.</span><span class="n">rhy</span>
+<span class="n">tommy</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.8</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.1</span>
+<span class="n">paul</span> <span class="n">H</span><span class="o">=</span> <span class="mf">0.6</span> <span class="n">J</span><span class="o">=</span> <span class="mf">2.0</span> <span class="n">teff</span> <span class="mf">0.025</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># triming</span>
+<span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">trkband</span><span class="p">:</span>
+        <span class="n">trkband</span><span class="p">[</span><span class="n">part</span><span class="p">]</span><span class="o">.</span><span class="n">truncate</span><span class="p">(</span> <span class="n">ttime</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="results">
+<h2>results<a class="headerlink" href="#results" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="n">trkband</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s1">&#39;art&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">classAutobop</span><span class="o">.</span><span class="n">track</span> <span class="n">instance</span> <span class="n">at</span> <span class="mh">0x106a08ea8</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="s1">&#39;john&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">classAutobop</span><span class="o">.</span><span class="n">track</span> <span class="n">instance</span> <span class="n">at</span> <span class="mh">0x106a07518</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="s1">&#39;paul&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">classAutobop</span><span class="o">.</span><span class="n">track</span> <span class="n">instance</span> <span class="n">at</span> <span class="mh">0x10a029d88</span><span class="o">&gt;</span><span class="p">,</span>
+ <span class="s1">&#39;tommy&#39;</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">classAutobop</span><span class="o">.</span><span class="n">track</span> <span class="n">instance</span> <span class="n">at</span> <span class="mh">0x106a08f38</span><span class="o">&gt;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="there-are-three-fundamental-methods-in-track-class-duration-midi-note-and-velocity">
+<h3>There are three fundamental methods in track class: duration, MIDI note, and velocity<a class="headerlink" href="#there-are-three-fundamental-methods-in-track-class-duration-midi-note-and-velocity" title="Permalink to this headline">¶</a></h3>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># duration</span>
+<span class="n">trkband</span><span class="p">[</span><span class="n">b</span><span class="s1">&#39;john&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dur</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">480</span><span class="p">,</span> <span class="mi">240</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># MIDI notes</span>
+<span class="n">trkband</span><span class="p">[</span><span class="n">b</span><span class="s1">&#39;john&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">note</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">64</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">82</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mi">64</span><span class="p">],</span>
+       <span class="p">[</span> <span class="mi">78</span><span class="p">],</span>
+       <span class="p">[</span><span class="o">-</span><span class="mi">64</span><span class="p">]])</span>
+</pre></div>
+</div>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># display MIDI notes of john</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">debugraphic</span><span class="o">.</span><span class="n">plot_midiseq</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">trkband</span><span class="p">[</span><span class="n">b</span><span class="s1">&#39;john&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">note</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">],</span> <span class="n">trkband</span><span class="p">[</span><span class="n">b</span><span class="s1">&#39;john&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dur</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">debugraphic</span><span class="o">.</span><span class="n">plot_midiseq</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">trkband</span><span class="p">[</span><span class="n">b</span><span class="s1">&#39;john&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">note</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">],</span> <span class="n">trkband</span><span class="p">[</span><span class="n">b</span><span class="s1">&#39;john&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dur</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">200</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="output_23_0.png" src="output_23_0.png" />
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="c1"># velocity</span>
+<span class="n">trkband</span><span class="p">[</span><span class="n">b</span><span class="s1">&#39;john&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">vel</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">87</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">86</span><span class="p">],</span>
+       <span class="p">[</span><span class="mi">10</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Install</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tutorial1.html">Tutorial 1 (console)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial 2 (using Jupyter)</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="brownbop.html">brownbop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rhythmmachine.html">rhythmmachine</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="bopnizer.html">bopnizer</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="brownbop.html" title="brownbop"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tutorial1.html" title="Tutorial 1 (console)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">autobop   documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Hajime Kawahara, Ryohei Kikuchi.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.1.
+    </div>
+  </body>
+</html>
