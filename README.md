@@ -17,3 +17,16 @@ Activate the IAC driver (Application -> Utilities -> Audio MIDI).
 - Set output in a software synthesizer to soundflower 2ch.
 - Use Audicity or Garage Band to record after setting its input to soundflower 2ch.
 
+## tutorial
+
+In your console, type
+
+autobop.py -band brown.band -sheet giant.abs -o giant.takt
+
+This makes a takt file (giant.takt) in the current directory. Start up your MIDI environment and set instruments. Then, use takt to connect MIDI.
+
+takt giant.takt
+
+## examples
+
+https://soundcloud.com/user653030395/bass-steps
