@@ -2,7 +2,7 @@
 
 Melody Generation Based on Stochastic Processes for Jazz Chord Progressions.
 
-Jazz improvisations have been based on chord progressions. Autobop automatically generates phrases based on stochastic processes and an analog of quantum energy levels (QEL) of electrons. The algorithm converts general stochastic processes to melody lines under strong constraints on chord changes. This conversion enables the generated melody to exhibit monotonically increasing, decreasing, jaggy, and periodical features. The QEL model controls affinity of horizontal sounds of melody for chord changes. Several non-Markov processes including the Brownian bridges with the Hurst parameter and the quasi-periodic random Gaussian process are currently available.
+Jazz improvisations are usually based on chord progressions. Autobop automatically generates phrases based on stochastic processes and an analog of quantum energy levels (QEL) of electrons. The algorithm converts general stochastic processes to melody lines under strong constraints on chord changes. This conversion enables the generated melody to exhibit monotonically increasing, decreasing, jaggy, and periodical features. The QEL model controls affinity of horizontal sounds of melody for chord changes. Several non-Markov processes including the Brownian bridges with the Hurst parameter and the quasi-periodic random Gaussian process are currently available.
 
 See Wiki for the details: https://github.com/HajimeKawahara/autobop/wiki
 
