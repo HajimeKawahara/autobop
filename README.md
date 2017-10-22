@@ -1,5 +1,7 @@
 # autobop 
 
+Melody Generation Based on Stochastic Processes for Jazz Chord Progressions
+
 ## Requirements
 
 - Python 3 (numpy, matplotlib)
