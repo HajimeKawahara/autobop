@@ -1,6 +1,8 @@
 # autobop 
 
-Melody Generation Based on Stochastic Processes for Jazz Chord Progressions
+Melody Generation Based on Stochastic Processes for Jazz Chord Progressions.
+
+Improvisations for most categories in JAZZ music have been based on chord progressions. Autobop automatically generates phrases based on stochastic processes and an analog of quantum energy levels (QEL) of electrons. The algorithm converts general stochastic processes to melody lines under strong constraints on chord changes. This conversion enables the generated melody to exhibit monotonically increasing, decreasing, jaggy, and periodical features. The QEL model controls affinity of horizontal sounds of melody for chord changes. We demonstrate the algorithm with several non-Markov processes including the Brownian bridges with the Hurst parameter and the quasi-periodic random Gaussian process.
 
 ## Requirements
 
