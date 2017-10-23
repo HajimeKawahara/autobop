@@ -6,6 +6,8 @@ Jazz improvisations are usually based on chord progressions. Autobop automatical
 
 See Wiki for the details: https://github.com/HajimeKawahara/autobop/wiki
 
+Note: Our purpose of autobop is NOT to generate good music, but to explore what kind of principle generates new feeling of melody. 
+
 ## Requirements
 
 - Python 3 (numpy, matplotlib)
