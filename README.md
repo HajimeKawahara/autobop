@@ -6,7 +6,8 @@ Jazz improvisations are usually based on chord progressions. Autobop automatical
 
 See Wiki for the details: https://github.com/HajimeKawahara/autobop/wiki
 
-Note: Our purpose of autobop is NOT to generate good music, but to explore what kind of principle generates new feeling of melody. 
+Note: Our purpose of autobop is NOT to generate good music, but to explore what kind of principle generates new feeling of melody. This concept makes melodies with a mixture of good and bad sounds. But, I do not care much about that, because I am quite sure that real music is NOT an algorithm. I just hope that one find new sounds of improvisation from autobop.
+
 
 ## Requirements
 
