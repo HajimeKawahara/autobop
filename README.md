@@ -1,4 +1,4 @@
-# autobop 
+# Autobop 
 
 Melody Generation Based on Stochastic Processes for Jazz Chord Progressions.
 
@@ -6,8 +6,9 @@ Jazz improvisations are usually based on chord progressions. Autobop automatical
 
 See Wiki for the details: https://github.com/HajimeKawahara/autobop/wiki
 
-Note: Our purpose of autobop is NOT to generate good music, but to explore what kind of principle generates new feeling of melody. This concept makes melodies with a mixture of good and bad sounds. But, I do not care much about that, because I am quite sure that real music is NOT an algorithm. I just hope that one find new sounds of improvisation from autobop.
+Note: Our purpose of autobop is NOT to generate good music, but to explore what kind of principle generates new feeling of melody and sounds. This concept makes melodies with a mixture of good and bad sounds. But, I do not care much about that, because I am quite sure that real music is NEVER an algorithm. I just hope that one find new sounds of improvisation from autobop.
 
+Also, I note that Autobop is a test-bed of a future framework of stochastic melody generator based on Bayesian expressions. So, Autobop has many theoretically messy parts, including the translation from the continuous function to discrete distributions. The next project is [Bayesbop](https://github.com/HajimeKawahara/bayesbop). 
 
 ## Requirements
 
